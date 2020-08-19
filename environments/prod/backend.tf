@@ -15,7 +15,7 @@
 
 terraform {
   backend "gcs" {
-    bucket = "PROJECT_ID-tfstate"
+    bucket = "dbgong-pearlabyss-20191008-tfstate"
     prefix = "env/prod"
   }
 }
