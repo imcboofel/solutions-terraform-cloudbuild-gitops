@@ -90,3 +90,29 @@ steps:
         echo "*******************************************************************************"
       fi
 # [END tf-apply]      
+
+# [START tf-destroy]
+- id: 'tf destroy'
+  name: 'hashicorp/terraform:0.11.14'
+  entrypoint: 'sh'
+  args: 
+  - '-c'
+  - | 
+      if [ -d "environments/$BRANCH_NAME/" ]; then
+        cd environments/$BRANCH_NAME
+        terraform destroy
+      else
+        for dir in environments/*/
+        do 
+          cd ${dir}   
+          env=${dir%*/}
+          env=${env#*/}  
+          echo ""
+          echo "*************** TERRAFOM PLAN ******************"
+          echo "******* At environment: ${env} ********"
+          echo "*************************************************"
+          terraform destroy || exit 1
+          cd ../../
+        done
+      fi 
+# [END tf-destroy]
