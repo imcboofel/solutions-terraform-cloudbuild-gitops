@@ -110,4 +110,8 @@ steps:
 
 # Test Merge
 # Test Rebase
+<<<<<<< HEAD
 # new temp
+=======
+# Test
+>>>>>>> 4b52069 (rebase test)
